@@ -1,10 +1,78 @@
 <resources>
-    <string name="app_name">ProjMeuCandidato</string>
+    <string name="app_name">Meu Candidato</string>
+    <string name="curso">Especialização Tecnologia Java</string>
+
+    <!--Campos da View-->
+    <string name="nome_completo">Nome completo</string>
+    <string name="sexo">Sexo</string>
+    <string name="masculino">Masculino</string>
+    <string name="feminino">Feminino</string>
+    <string name="contato">Contato</string>
+    <string name="particular">Particular</string>
+    <string name="gabinete">Gabinete</string>
+    <string name="fixo">Fixo</string>
+    <string name="partido">Partido</string>
+    <string name="telefone">Telefone</string>
+    <string name="numero_um">1</string>
+    <string name="numero_dois">2</string>
+    <string name="numero_tres">3</string>
+    <string name="numero_quatro">4</string>
+    <string name="numero_cinco">5</string>
+    <string name="avaliacao">Avaliação</string>
+    <string name="justificativa">Justificativa</string>
+    <string name="email">Email</string>
+    <string name="sigla_partido">Sigla Partido</string>
     <string name="botao_salvar">Salvar</string>
+    <string name="botao_limpar">Limpar</string>
     <string name="botao_adicionar">Adicionar</string>
     <string name="botao_sobre">Sobre</string>
     <string name="sobre_objetivo">Esse Aplictivo tem como objetivo fazer o controle de candidos que eu votei.</string>
     <string name="autor">Edilson do Nascimento</string>
-    <string name="curso">Especialização Tecnologia Java</string>
-    <string name="email">edilon.nasciment@utfpr.edu.br</string>
+
+
+    <!-- Mensagens-->
+    <string name="total_estrelas">"Total de estrelas: "</string>
+    <string name="selecionado_opcao">"Selecionado a opção: "</string>
+    <string name="nenhuma_opcao_selecionada">Nenhuma opção selecionada de</string>
+    <string name="compos_limpos_com_sucesso">Campos limpos com Sucesso!</string>
+    <string name="erro_campo_em_branco">não preenchido</string>
+    <string name="campo_cadastrado_sucesso">Campos salvos</string>
+    <string name="sucesso">sucesso</string>
+    <string name="espaco">" "</string>
+    <string name="campo_selecioanado">Detalhes do Canditado</string>
+
+    <!--Partidos-->
+    <string name="sem_partido">Sem Partido</string>
+    <string name="partido_onestos">Partido dos Onestos</string>
+    <string name="partido_santos">Partido dos Santos</string>
+    <string name="confianca">Confiança</string>
+    <string name="agora_vai">Agora vai</string>
+
+    <!--Candidatos-->
+    <string name="pedro">Pedro</string>
+    <string name="tiago">Tiago</string>
+    <string name="joao">João</string>
+    <string name="andre">André</string>
+    <string name="felipe">Filipe</string>
+    <string name="bartolomeu">Bartolomeu</string>
+    <string name="mateus">Mateus</string>
+    <string name="tome">Tomé</string>
+    <string name="tiagoJusto">Tiago o Justo</string>
+    <string name="tadeu">Tadeu</string>
+    <string name="simao">Simão</string>
+    <string name="judas">Judas</string>
+
+    <!--Email de Canditados-->
+    <string name="email_pedro">pedro@apostolo.com</string>
+    <string name="email_tiago_maior">tiagomaior@apostolo.com</string>
+    <string name="email_joao">joao@apostolo.com</string>
+    <string name="email_andre">andre@apostolo.com</string>
+    <string name="email_felipe">filipe@apostolo.com</string>
+    <string name="email_bartolomeu">bartolomeu@apostolo.com</string>
+    <string name="email_mateus">mateus@apostolo.com</string>
+    <string name="email_tome">tome@apostolo.com</string>
+    <string name="email_tiago_justo">tiagojusto@apostolo.com</string>
+    <string name="email_tadeu">tadeu@apostolo.com</string>
+    <string name="email_simao">simao@apostolo.com</string>
+    <string name="email_judas">judas@apostolo.com</string>
 </resources>

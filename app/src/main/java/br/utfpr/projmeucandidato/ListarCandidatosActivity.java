@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class ListarCandidatos extends AppCompatActivity {
+public class ListarCandidatosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,5 +15,9 @@ public class ListarCandidatos extends AppCompatActivity {
 
     public void botaoSobre(View view){
         AutoriaActivity.sobre(this);
+    }
+
+    public void adicionar(View view){
+        MainActivity.novoCandidato(this);
     }
 }

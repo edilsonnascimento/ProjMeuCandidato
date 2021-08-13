@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListarCandidatos">
+    tools:context=".ListarCandidatosActivity">
 
     <Button
         android:id="@+id/buttonAdicionar"
@@ -13,6 +13,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="16dp"
+        android:onClick="adicionar"
         android:text="@string/botao_adicionar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

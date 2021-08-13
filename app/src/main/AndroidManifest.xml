@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjMeuCandidato">
-        <activity android:name=".AutoriaActivity"></activity>
+        <activity android:name=".AutoriaActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".ListarCandidatos">
+        <activity android:name=".ListarCandidatosActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
