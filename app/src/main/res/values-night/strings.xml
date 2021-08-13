@@ -1,10 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ProjMeuCandidato</string>
     <string name="botao_salvar">Salvar</string>
     <string name="botao_adicionar">Adicionar</string>
     <string name="botao_sobre">Sobre</string>
     <string name="sobre_objetivo">Esse Aplictivo tem como objetivo fazer o controle de candidos que eu votei.</string>
     <string name="autor">Edilson do Nascimento</string>
-    <string name="curso">Especialização Tecnologia Java</string>
+    <string name="curso">Especializção Tecnilogias Java</string>
     <string name="email">edilon.nasciment@utfpr.edu.br</string>
 </resources>
