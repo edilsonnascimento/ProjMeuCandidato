@@ -75,4 +75,7 @@
     <string name="email_tadeu">tadeu@apostolo.com</string>
     <string name="email_simao">simao@apostolo.com</string>
     <string name="email_judas">judas@apostolo.com</string>
+    <string name="novo_candidato">Novo Candidato</string>
+    <string name="alterar_candidato">Alterar Candidato</string>
+    <string name="botao_cancelar">Cancelar</string>
 </resources>

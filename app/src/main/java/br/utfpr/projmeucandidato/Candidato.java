@@ -1,13 +1,19 @@
 package br.utfpr.projmeucandidato;
 
-public class Candidato {
+import java.io.Serializable;
+
+public class Candidato implements Serializable {
 
     private String nome;
     private Sexo sexo;
     private TipoContato tipoContato;
     private String telefone;
     private String email;
-    private Long idPartido;
+    private String partido;
+
+    public void atualizar(Candidato candidato) {
+        nome = candidato.getNome();
+    }
 
     public String getNome() {
         return nome;
@@ -49,11 +55,16 @@ public class Candidato {
         this.email = email;
     }
 
-    public Long getIdPartido() {
-        return idPartido;
+    public String getPartido() {
+        return partido;
     }
 
-    public void setIdPartido(Long idPartido) {
-        this.idPartido = idPartido;
+    public void setPartido(String partido) {
+        this.partido = partido;
+    }
+
+    @Override
+    public String toString() {
+        return  nome + " - " + partido;
     }
 }

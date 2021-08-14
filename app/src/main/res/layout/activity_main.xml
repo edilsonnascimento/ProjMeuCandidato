@@ -38,5 +38,214 @@
             app:layout_constraintStart_toStartOf="@+id/textViewNomeCompleto"
             app:layout_constraintTop_toBottomOf="@+id/textViewNomeCompleto" />
 
+        <TextView
+            android:id="@+id/textLabelSexo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/sexo"
+            app:layout_constraintStart_toStartOf="@+id/editTextNomeCompleto"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNomeCompleto" />
+
+        <TextView
+            android:id="@+id/textLabelContato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/contato"
+            app:layout_constraintStart_toStartOf="@+id/radioGroupSexo"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupSexo" />
+
+        <TextView
+            android:id="@+id/textLabelPartido"
+            android:layout_width="82dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/partido"
+            app:layout_constraintStart_toStartOf="@+id/editTextEmail"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
+        <EditText
+            android:id="@+id/editTextTelefone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="phone"
+            app:layout_constraintStart_toStartOf="@+id/radioGroupTelefone"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupTelefone" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupTelefone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/textLabelContato"
+            app:layout_constraintTop_toBottomOf="@+id/textLabelContato">
+
+            <RadioButton
+                android:id="@+id/radioButtonParticular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/particular" />
+
+            <RadioButton
+                android:id="@+id/radioButtonGabinete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gabinete" />
+
+            <RadioButton
+                android:id="@+id/radioButtonFixo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fixo" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/radioGroupSexo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@+id/textLabelSexo"
+            app:layout_constraintTop_toBottomOf="@+id/textLabelSexo">
+
+            <RadioButton
+                android:id="@+id/rbFeminino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/feminino" />
+
+            <RadioButton
+                android:id="@+id/rbMasculino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/masculino" />
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/spinnerPartidos"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/textLabelPartido"
+            app:layout_constraintTop_toBottomOf="@+id/textLabelPartido" />
+
+        <Button
+            android:id="@+id/buttonSalvar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:onClick="salvar"
+            android:text="@string/botao_salvar"
+            app:layout_constraintStart_toStartOf="@+id/editTextJustificativa"
+            app:layout_constraintTop_toBottomOf="@+id/editTextJustificativa" />
+
+        <Button
+            android:id="@+id/buttonLimpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:onClick="limpar"
+            android:text="@string/botao_limpar"
+            app:layout_constraintEnd_toEndOf="@+id/editTextJustificativa"
+            app:layout_constraintStart_toEndOf="@+id/buttonSalvar"
+            app:layout_constraintTop_toBottomOf="@+id/editTextJustificativa" />
+
+        <TextView
+            android:id="@+id/textAvaliacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/avaliacao"
+            app:layout_constraintStart_toStartOf="@+id/spinnerPartidos"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPartidos" />
+
+        <CheckBox
+            android:id="@+id/chUmaEstrela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/numero_um"
+            app:layout_constraintStart_toStartOf="@+id/textAvaliacao"
+            app:layout_constraintTop_toBottomOf="@+id/textAvaliacao" />
+
+        <CheckBox
+            android:id="@+id/chDuasEstrelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/numero_dois"
+            app:layout_constraintStart_toEndOf="@+id/chUmaEstrela"
+            app:layout_constraintTop_toBottomOf="@+id/textAvaliacao" />
+
+        <CheckBox
+            android:id="@+id/chTresEstrelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/numero_tres"
+            app:layout_constraintStart_toEndOf="@+id/chDuasEstrelas"
+            app:layout_constraintTop_toBottomOf="@+id/textAvaliacao" />
+
+        <CheckBox
+            android:id="@+id/chQuatroEstrelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/numero_quatro"
+            app:layout_constraintStart_toEndOf="@+id/chTresEstrelas"
+            app:layout_constraintTop_toBottomOf="@+id/textAvaliacao" />
+
+        <CheckBox
+            android:id="@+id/chCincoEstrelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/numero_cinco"
+            app:layout_constraintStart_toEndOf="@+id/chQuatroEstrelas"
+            app:layout_constraintTop_toBottomOf="@+id/textAvaliacao" />
+
+        <TextView
+            android:id="@+id/textJustificativa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/justificativa"
+            app:layout_constraintStart_toStartOf="@+id/chUmaEstrela"
+            app:layout_constraintTop_toBottomOf="@+id/chDuasEstrelas" />
+
+        <EditText
+            android:id="@+id/editTextJustificativa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/textJustificativa"
+            app:layout_constraintTop_toBottomOf="@+id/textJustificativa" />
+
+        <TextView
+            android:id="@+id/textEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/email"
+            app:layout_constraintStart_toStartOf="@+id/editTextTelefone"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTelefone" />
+
+        <EditText
+            android:id="@+id/editTextEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            app:layout_constraintStart_toStartOf="@+id/textEmail"
+            app:layout_constraintTop_toBottomOf="@+id/textEmail" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

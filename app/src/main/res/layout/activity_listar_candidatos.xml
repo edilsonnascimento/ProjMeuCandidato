@@ -35,9 +35,13 @@
 
     <ListView
         android:id="@+id/listViewCandidatos"
-        android:layout_width="409dp"
-        android:layout_height="665dp"
+        android:layout_width="362dp"
+        android:layout_height="647dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSobre" />
 </android.support.constraint.ConstraintLayout>
