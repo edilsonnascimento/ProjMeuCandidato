@@ -10,10 +10,7 @@ public class Candidato implements Serializable {
     private String telefone;
     private String email;
     private String partido;
-
-    public void atualizar(Candidato candidato) {
-        nome = candidato.getNome();
-    }
+    private Avaliacao avaliacao;
 
     public String getNome() {
         return nome;
@@ -63,8 +60,25 @@ public class Candidato implements Serializable {
         this.partido = partido;
     }
 
+    public Avaliacao getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
+    }
+
     @Override
     public String toString() {
         return  nome + " - " + partido;
+    }
+
+    public void atualizar(Candidato candidato) {
+        nome = candidato.nome;
+        sexo = candidato.sexo;
+        tipoContato = candidato.tipoContato;
+        telefone = candidato.telefone;
+        email = candidato.email;
+        partido = candidato.partido;
     }
 }

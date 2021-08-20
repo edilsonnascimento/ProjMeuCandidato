@@ -1,13 +1,13 @@
 package br.utfpr.projmeucandidato;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Avaliacao {
+public class Avaliacao implements Serializable {
 
     private LocalDateTime data;
     private Integer quantidadeEstrelas;
     private String justificativa;
-    private Candidato candidato;
 
     public LocalDateTime getData() {
         return data;
@@ -33,11 +33,4 @@ public class Avaliacao {
         this.justificativa = justificativa;
     }
 
-    public Candidato getCandidato() {
-        return candidato;
-    }
-
-    public void setCandidato(Candidato candidato) {
-        this.candidato = candidato;
-    }
 }

@@ -1,10 +1,10 @@
 package br.utfpr.projmeucandidato;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +36,33 @@ public class MainActivity extends AppCompatActivity {
     private String erroCampoBranco = "";
 
 
+    public static void novoCandidato(AppCompatActivity activity) {
+        Intent intent = new Intent(activity, MainActivity.class);
+
+        intent.putExtra(MODO, NOVO);
+        activity.startActivityForResult(intent, NOVO);
+    }
+
+    public static void alterarCandidato(AppCompatActivity activity, Candidato candidato){
+
+        Intent intent = new Intent(activity, MainActivity.class);
+
+        intent.putExtra(MODO, ALTERAR);
+        intent.putExtra(CANDIDATO, candidato);
+
+        activity.startActivityForResult(intent, ALTERAR);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Cria botão UP(<-) dispara um evento
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         carregarCampos();
 
@@ -51,67 +77,162 @@ public class MainActivity extends AppCompatActivity {
                 setTitle(getString(R.string.novo_candidato));
             }else{
                 candidato = (Candidato) bundle.get(CANDIDATO);
+
+                carregarCampos(candidato);
+
                 setTitle(getString(R.string.alterar_candidato));
-                carregarCamposAlterar(candidato);
             }
         }
 
     }
 
-    private void carregarCamposAlterar(Candidato candidato) {
-         editTextNomeCompleto.setText(candidato.getNome());
-
-         if(candidato.getSexo().equals(Sexo.FEMININO)) {
-           radioGroupSexo.check(R.id.rbFeminino);
-        }else{
-             radioGroupSexo.check(R.id.rbMasculino);
-         }
-    }
-
-
-    public void salvar(View view){
-        String mensagemSucesso = "";
+    public void salvar(){
         erroCampoBranco = "";
 
-        tratamentoCamposTexto(view);
-        tratamentoCheckBox(view);
-        tratamentoRadioGroupSexo(view);
-        tratamentoRadioGroupTelefone(view);
-        tratamentoSpinnerPartido(view);
-
+        tratamentoCamposTexto();
+        tratamentoCheckBox();
+        tratamentoRadioGroupSexo();
+        tratamentoRadioGroupTelefone();
+        tratamentoSpinnerPartido();
+        candidato.setAvaliacao(avaliacao);
 
         if(erroCampoBranco.isEmpty()) {
             Intent intent = new Intent();
             intent.putExtra(CANDIDATO, candidato);
 
             setResult(Activity.RESULT_OK, intent);
-
-            mensagemSucesso = getString(R.string.campo_cadastrado_sucesso) + getString(R.string.espaco) +
-                    getString(R.string.nome_completo) + getString(R.string.espaco) + candidato.getNome() + getString(R.string.espaco) +
-                    getString(R.string.telefone) + getString(R.string.espaco) + candidato.getTelefone() + getString(R.string.espaco) +
-                    getString(R.string.email) + getString(R.string.espaco) + candidato.getEmail() + getString(R.string.espaco) +
-                    getString(R.string.partido) + getString(R.string.espaco) + candidato.getPartido() + getString(R.string.espaco) +
-                    getString(R.string.justificativa) + getString(R.string.espaco) + avaliacao.getJustificativa();
-
-            Toast.makeText(this, mensagemSucesso, Toast.LENGTH_SHORT).show();
-
+            mensagemSucesso();
             finish();
         }
 
+        return;
+
     }
 
-    private void tratamentoSpinnerPartido(View view) {
+    private void cancelar() {
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancelar();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_salvar_cancelar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+
+
+            case R.id.menuItemSalvar:
+                salvar();
+                return true;
+
+
+            case R.id.menuItemLimpar:
+                limpar();
+                return true;
+
+            case android.R.id.home:
+                cancelar();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void carregarCampos(Candidato candidato) {
+
+         editTextNomeCompleto.setText(candidato.getNome());
+
+         if(candidato.getSexo().equals(Sexo.FEMININO)) {
+           radioGroupSexo.check(R.id.rbFeminino);
+         }else{
+             radioGroupSexo.check(R.id.rbMasculino);
+         }
+
+         switch (candidato.getTipoContato()){
+            case PARTICULAR:
+                radioGroupTelefone.check(R.id.radioButtonParticular);
+                break;
+            case GABINETE:
+                radioGroupTelefone.check(R.id.radioButtonGabinete);
+                break;
+            case FIXO:
+                radioGroupTelefone.check(R.id.radioButtonFixo);
+                break;
+        }
+
+         textTelefone.setText(candidato.getTelefone());
+
+         textEmail.setText(candidato.getEmail());
+
+         //partido
+         //verificar como carregar o spinner com o valor de candidato.getPartido();
+
+         marcarEstrelas(candidato.getAvaliacao().getQuantidadeEstrelas());
+
+        textJustificativa.setText(candidato.getAvaliacao().getJustificativa());
+
+        mensagemSucesso();
+
+    }
+
+    private void marcarEstrelas(Integer quantidadeEstrelas) {
+
+        switch (quantidadeEstrelas){
+            case 1 :
+                chUmaEstrela.setChecked(true);
+                break;
+            case 2 :
+                chUmaEstrela.setChecked(true);
+                chDuasEstrelas.setChecked(true);
+                break;
+            case 3 :
+                chUmaEstrela.setChecked(true);
+                chDuasEstrelas.setChecked(true);
+                chTresEstrelas.setChecked(true);
+                break;
+            case 4 :
+                chUmaEstrela.setChecked(true);
+                chDuasEstrelas.setChecked(true);
+                chTresEstrelas.setChecked(true);
+                chQuatroEstrelas.setChecked(true);
+                break;
+            case 5 :
+                chUmaEstrela.setChecked(true);
+                chDuasEstrelas.setChecked(true);
+                chTresEstrelas.setChecked(true);
+                chQuatroEstrelas.setChecked(true);
+                chCincoEstrelas.setChecked(true);
+                break;
+        }
+    }
+
+    private void mensagemSucesso(){
+
+        String mensagemSucesso = getString(R.string.campo_cadastrado_sucesso) + getString(R.string.espaco) +
+                getString(R.string.nome_completo) + getString(R.string.espaco) + candidato.getNome() + getString(R.string.espaco) +
+                getString(R.string.telefone) + getString(R.string.espaco) + candidato.getTelefone() + getString(R.string.espaco) +
+                getString(R.string.email) + getString(R.string.espaco) + candidato.getEmail() + getString(R.string.espaco) +
+                getString(R.string.partido) + getString(R.string.espaco) + candidato.getPartido() + getString(R.string.espaco) +
+                getString(R.string.justificativa) + getString(R.string.espaco) + avaliacao.getJustificativa();
+
+        Toast.makeText(this, mensagemSucesso, Toast.LENGTH_SHORT).show();
+    }
+
+    private void tratamentoSpinnerPartido() {
         if(candidato.getPartido().isEmpty()){
             mostrarErro(getString(R.string.partido));
             spinnerPartidos.requestFocus();
         }
-    }
-
-    public static void novoCandidato(ListarCandidatosActivity activity) {
-        Intent intent = new Intent(activity, MainActivity.class);
-
-        intent.putExtra(MODO, NOVO);
-        activity.startActivityForResult(intent, NOVO);
     }
 
 
@@ -166,8 +287,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    private void tratamentoCamposTexto(View view) {
+    private void tratamentoCamposTexto() {
         candidato.setNome(editTextNomeCompleto.getText().toString());
         candidato.setTelefone(textTelefone.getText().toString());
         candidato.setEmail(textEmail.getText().toString());
@@ -198,7 +318,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    private void tratamentoRadioGroupTelefone(View view) {
+
+    private void tratamentoRadioGroupTelefone() {
 
         switch (radioGroupTelefone.getCheckedRadioButtonId()) {
 
@@ -210,6 +331,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.radioButtonFixo:
                 candidato.setTipoContato(TipoContato.FIXO);
+                break;
             default:
                 mostrarErro(getString(R.string.contato));
                 radioGroupTelefone.requestFocus();
@@ -217,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void tratamentoRadioGroupSexo(View view) {
+    private void tratamentoRadioGroupSexo() {
 
         switch (radioGroupSexo.getCheckedRadioButtonId()){
 
@@ -232,8 +354,7 @@ public class MainActivity extends AppCompatActivity {
                 radioGroupSexo.requestFocus();
         }
     }
-
-    private void tratamentoCheckBox(View view) {
+    private void tratamentoCheckBox() {
         int totalEstrelas = 0;
 
         if(chUmaEstrela.isChecked()) totalEstrelas += 1;
@@ -255,7 +376,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, erroCampoBranco, Toast.LENGTH_SHORT).show();
 
     }
-    public void limpar(View view){
+
+    public void limpar(){
 
         editTextNomeCompleto.setText(null);
         textTelefone.setText(null);
@@ -273,21 +395,5 @@ public class MainActivity extends AppCompatActivity {
 
         erroCampoBranco = "";
         Toast.makeText(this, R.string.compos_limpos_com_sucesso, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void alterarCandidato(AppCompatActivity activity, Candidato candidato){
-
-        Intent intent = new Intent(activity, MainActivity.class);
-
-        intent.putExtra(MODO, ALTERAR);
-        intent.putExtra(CANDIDATO, candidato);
-
-        activity.startActivityForResult(intent, ALTERAR);
-    }
-
-    @Override
-    public void onBackPressed() {
-        setResult(Activity.RESULT_CANCELED);
-        finish();
     }
 }

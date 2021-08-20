@@ -131,29 +131,6 @@
             app:layout_constraintStart_toStartOf="@+id/textLabelPartido"
             app:layout_constraintTop_toBottomOf="@+id/textLabelPartido" />
 
-        <Button
-            android:id="@+id/buttonSalvar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:onClick="salvar"
-            android:text="@string/botao_salvar"
-            app:layout_constraintStart_toStartOf="@+id/editTextJustificativa"
-            app:layout_constraintTop_toBottomOf="@+id/editTextJustificativa" />
-
-        <Button
-            android:id="@+id/buttonLimpar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
-            android:onClick="limpar"
-            android:text="@string/botao_limpar"
-            app:layout_constraintEnd_toEndOf="@+id/editTextJustificativa"
-            app:layout_constraintStart_toEndOf="@+id/buttonSalvar"
-            app:layout_constraintTop_toBottomOf="@+id/editTextJustificativa" />
-
         <TextView
             android:id="@+id/textAvaliacao"
             android:layout_width="wrap_content"

@@ -10,13 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjMeuCandidato">
         <activity android:name=".AutoriaActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".ListarCandidatosActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".MainActivity"
+                android:parentActivityName=".ListarCandidatosActivity">
+                <!-- Parent activity meta-data to support 4.0 and lower -->
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".ListarCandidatosActivity" />
         </activity>
     </application>
 
